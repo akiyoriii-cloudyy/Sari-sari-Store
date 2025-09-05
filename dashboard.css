@@ -1,0 +1,530 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f8fafc;
+    color: #1e293b;
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgba(0, 20, 40, 0.05), rgba(0, 10, 30, 0.1));
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 280px;
+    background: rgba(14, 24, 36, 0.95);
+    backdrop-filter: blur(15px);
+    color: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 4px 0 25px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+    padding: 25px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo h2 {
+    font-size: 1.75rem;
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.menu {
+    list-style: none;
+    flex-grow: 1;
+    padding: 20px 0;
+}
+
+.menu li {
+    padding: 15px 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 5px 15px;
+    border-radius: 12px;
+}
+
+.menu li:hover {
+    background: rgba(52, 152, 219, 0.1);
+    transform: translateX(5px);
+}
+
+.menu li.active {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+.menu li i {
+    width: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.user-info {
+    padding: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.user-avatar {
+    font-size: 3rem;
+    color: #3498db;
+}
+
+.user-name {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.logout-btn {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    border: none;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+}
+
+/* Main Content Styles */
+.main-content {
+    flex: 1;
+    margin-left: 280px;
+    min-height: 100vh;
+    background: transparent;
+    position: relative;
+}
+
+/* Header Enhancements */
+.header {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.datetime {
+    display: flex;
+    gap: 20px;
+    color: #1e293b;
+}
+
+.date, .time {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.order-info {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.cashier-name span {
+    font-weight: 600;
+    color: #3498db;
+}
+
+.content-sections {
+    flex-grow: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.content-section {
+    display: none;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(15px);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.content-section.active {
+    display: block;
+}
+
+.content-section h2 {
+    margin-bottom: 25px;
+    color: #1e293b;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 15px;
+    font-weight: 600;
+}
+
+/* Form Controls Styles */
+.search-box, .product-controls, .transaction-controls, 
+.discount-controls, .area-stock-controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.search-box input, .product-controls input, .transaction-controls input {
+    flex-grow: 1;
+    padding: 12px 16px;
+    border: 2px solid rgba(52, 152, 219, 0.1);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.search-box input:focus, .product-controls input:focus, 
+.transaction-controls input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+button, .search-box button, .product-controls button, 
+.transaction-controls button, .discount-controls button, 
+.area-stock-controls button {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+}
+
+/* Table Styles */
+.products-table, .transactions-table, .discounts-table, 
+.area-stock-table, .order-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 25px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(15px);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+}
+
+.products-table th, .transactions-table th, .discounts-table th, 
+.area-stock-table th, .order-table th {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 500;
+}
+
+.products-table th:first-child, .transactions-table th:first-child,
+.discounts-table th:first-child, .area-stock-table th:first-child,
+.order-table th:first-child {
+    border-top-left-radius: 12px;
+}
+
+.products-table th:last-child, .transactions-table th:last-child,
+.discounts-table th:last-child, .area-stock-table th:last-child,
+.order-table th:last-child {
+    border-top-right-radius: 12px;
+}
+
+.products-table td, .transactions-table td, .discounts-table td, 
+.area-stock-table td, .order-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.products-table tr:hover, .transactions-table tr:hover, 
+.discounts-table tr:hover, .area-stock-table tr:hover {
+    background: rgba(52, 152, 219, 0.05);
+}
+
+.action-btn {
+    padding: 8px 16px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.edit-btn {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+    box-shadow: 0 4px 15px rgba(243, 156, 18, 0.2);
+}
+
+.edit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(243, 156, 18, 0.3);
+}
+
+.delete-btn {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.2);
+}
+
+.delete-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.3);
+}
+
+/* Add Product Form Styles */
+.add-product-form {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    color: #1e293b;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.form-group input, .form-group textarea, .form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid rgba(52, 152, 219, 0.1);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    color: #1e293b;
+}
+
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { 
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* iframe Styles */
+iframe {
+    width: 100%;
+    height: calc(100vh - 80px);
+    border: none;
+    background: transparent;
+}
+
+/* Card Styles for Dashboard Widgets */
+.dashboard-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(15px);
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.card-icon {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.25rem;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+.card-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 10px 0;
+}
+
+.card-label {
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+/* Status Indicators */
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.status-success {
+    background: rgba(34, 197, 94, 0.1);
+    color: #16a34a;
+}
+
+.status-warning {
+    background: rgba(234, 179, 8, 0.1);
+    color: #ca8a04;
+}
+
+.status-danger {
+    background: rgba(239, 68, 68, 0.1);
+    color: #dc2626;
+}
+
+/* Enhanced Button Styles */
+.btn-icon {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 1.1rem;
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    
+    .main-content {
+        margin-left: 0;
+    }
+    
+    .menu {
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 10px;
+    }
+    
+    .menu li {
+        margin: 0 5px;
+        padding: 10px 15px;
+        white-space: nowrap;
+    }
+    
+    .content-sections {
+        padding: 15px;
+    }
+    
+    .header {
+        position: relative;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .dashboard-card {
+        margin-bottom: 15px;
+    }
+    
+    iframe {
+        height: calc(100vh - 120px);
+    }
+    
+    .search-box, .product-controls, .transaction-controls {
+        flex-direction: column;
+    }
+}
