@@ -1,10 +1,18 @@
 <?php
+session_start();
 include 'connect.php'; // Include the database connection file
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = trim($_POST['name']);
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
+    $confirm_password = trim($_POST['confirm_password']);
+
+    // Check if passwords match
+    if ($password !== $confirm_password) {
+        echo "<script>alert('Passwords do not match!'); window.history.back();</script>";
+        exit();
+    }
 
     // Check if the email already exists
     $check_email = $conn->prepare("SELECT id FROM users WHERE email = ?");
@@ -13,19 +21,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $check_email->store_result();
 
     if ($check_email->num_rows > 0) {
-        echo "<p style='color: red;'>Error: Email already exists!</p>";
+        echo "<script>alert('Error: Email already exists!'); window.history.back();</script>";
     } else {
         // Hash password for security
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        // Insert new user with prepared statements
+        // Insert new user
         $stmt = $conn->prepare("INSERT INTO users (name, email, password, created_at) VALUES (?, ?, ?, NOW())");
         $stmt->bind_param("sss", $name, $email, $hashed_password);
 
         if ($stmt->execute()) {
-            echo "<p style='color: green;'>Registration successful! <a href='index.php'>Login here</a></p>";
+            echo "<script>alert('Registration successful! Redirecting to login...'); window.location.href = 'index.php';</script>";
         } else {
-            echo "<p style='color: red;'>Error: " . $stmt->error . "</p>";
+            echo "<script>alert('Error: " . addslashes($stmt->error) . "'); window.history.back();</script>";
         }
 
         $stmt->close();
@@ -35,3 +43,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $conn->close();
+?>
