@@ -66,19 +66,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php if ($logoutMessage): ?><div class="message"><?= htmlspecialchars($logoutMessage) ?></div><?php endif; ?>
     <?php if ($error): ?><div class="error"><?= htmlspecialchars($error) ?></div><?php endif; ?>
 
-    <div class="input-field">
-        <input type="email" name="email" required />
-        <label>Enter your Email</label>
-    </div>
-    <div class="input-field">
-        <input type="password" name="password" required />
-        <label>Enter your Password</label>
-    </div>
-    <button type="submit">Log In</button>
-    <div class="register">
-        <p>Don't have an account? <a href="#" id="registerLink">Register</a> | <a href="forgot_password.php">Forgot Password?</a></p>
-    </div>
-</form>
+        <div class="input-field">
+            <input type="email" name="email" required />
+            <label>Enter your Email</label>
+        </div>
+        <div class="input-field">
+            <input type="password" name="password" required />
+            <label>Enter your Password</label>
+        </div>
+        <button type="submit">Log In</button>
+        <div class="register">
+            <p>Don't have an account? <a href="#" id="registerLink">Register</a> | <a href="forgot_password.php">Forgot via Email</a> | <a href="forgot_password_sms.php">Forgot via SMS</a></p>
+        </div>
+    </form>
 ```
 
 </div>
@@ -95,6 +95,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="input-field">
             <input type="email" name="email" required />
             <label>Enter your Email</label>
+        </div>
+        <div class="input-field">
+            <input type="tel" name="phone" pattern="^(\+?63|0)9\d{9}$" required />
+            <label>Enter your Phone Number</label>
         </div>
         <div class="input-field">
             <input type="password" id="password" name="password" required />
